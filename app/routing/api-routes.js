@@ -1,6 +1,6 @@
 
 
-var friendData 	= require('../data/friend.js');
+var friendData 	= require('../data/friends.js');
 
 
 // ROUTING
@@ -20,8 +20,8 @@ module.exports = function(app){
 		for (var i = 0; i < newFriend.scores.length; i++) {
 			if(newFriend.scores[i] == '1 (Strongly Disagree)'){
 				newFriend.scores[i] = 1; 
-			} else if(newFriend.scores[i] == '5 (Strongly Agree)')
-				newFriend.scores[i] = 5; {
+			} else if(newFriend.scores[i] == '5 (Strongly Agree)'){
+				newFriend.scores[i] = 5; 
 
 			} else {
 				newFriend.scores[i] = parseInt(newFriend.scores[i]); 
