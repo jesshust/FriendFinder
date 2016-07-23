@@ -186,6 +186,28 @@
 			<a href='/api/friends'>Friends List</a> 
 		</div>
 
+		<!-- Modal -->
+		<div id="resultsModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h2 class="modal-title"><strong>Best Match</strong></h2>
+		      </div>
+		      <div class="modal-body">
+		        <h2 id="matchName"></h2>
+		        <img id="matchImg" src="https://scontent-atl3-1.xx.fbcdn.net/t31.0-8/12671651_10103588389860047_3089131148518893786_o.jpg" alt="">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+
 		
 		<script type="text/javascript">
 			$('#submit').on("click", function() {
@@ -201,25 +223,19 @@
 						scores: [$('#question01').val(), $('#question02').val(), $('#question03').val(), $('#question04').val(), $('#question05').val(), $('#question06').val(), $('#question07').val(), $('#question08').val(), $('#question09').val(), $('#question10').val()]
 					}
 					var currentURL = window.location.origin;
-					
-					$.post(currentURL + '/api/friends', userInput, function(data) {
-						console.log("Modal");
-						$('.modal-body').html(data.name);
-						$('#photo').attr("src", data.photo);
-						$('#myModal').modal("show");
 
-					})
+					$.post(currentURL + '/api/friends', userInput, function(data) {
+					
+						    $("#matchName").text(data.name);
+
+						    $('#matchImg').attr("src", data.photo);
+					
+							$("#resultsModal").modal('toggle');
+					}); 
 				}
 
 			
 
-				// $.post(currentURL + '/api/friends', userInput, function(data) {
-				// 	console.log("Modal");
-				// 	$('.modal-body').html(data.name);
-				// 	$('#photo').attr("src", data.photo);
-				// 	$('#myModal').modal("show");
-
-				// })
 
 				return false;
 		

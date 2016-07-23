@@ -16,22 +16,22 @@ module.exports = function(app){
 	app.post('/api/friends', function(req, res){
 
 	var totalDifference = 100; 
-	var match; 
-	console.log("Here"); 
+	var bestMatch; 
 
-	friends.forEach(function(friend){
+	friends.forEach(function(friend) {
+ 
 		var newDiff = 0; 
 		console.log("looping");
 		for(i = 0; i < friend.scores.length; i++){
-			newDiff += Math.abs(friend.scores[i] - req.body.scores[i]); 
+			newDiff += Math.abs(friend.scores[i] - req.body.scores[i])
 		}
 		if (newDiff <= totalDifference){
 			totalDifference = newDiff; 
-			match = friend; 
+			bestMatch = friend; 
 		}
-	})
-		console.log("There");
-		res.json(match); 
+		}); 
+	
+		res.json(bestMatch); 
 		friends.push(req.body);  
-	})
-}
+	}); 
+}; 
