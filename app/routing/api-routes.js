@@ -1,6 +1,6 @@
 
 
-var friendData 		= require('../data/friend.js');
+var friendData 	= require('../data/friend.js');
 
 
 // ROUTING

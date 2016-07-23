@@ -1,11 +1,11 @@
 var friends = [ {
 	"name" : "Jess",
-	"photo" : "https://scontent-dfw1-1.xx.fbcdn.net/t31.0-8/13116244_10107568960519320_7024834722285826624_o.jpg",
+	"photo" : "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/12821353_10103638913440387_4876235500290633861_n.jpg?oh=5543894bf2101ae26637ab83c4919e5c&oe=582912CA",
 	"scores" : [5,5,2,3,1,5,2,1,3,5]
 }, {
 	"name" : "Mandy",
-	"photo" : "https://scontent-dfw1-1.xx.fbcdn.net/v/t1.0-9/13315379_10107649806588150_314898033587027263_n.jpg?oh=54f8e3f52844994423b3fec65e9327fb&oe=57E96499",
-	"scores" : [1,5,1,1,1,1,1,1,5,5]
+	"photo" : "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/13707530_10154473504741282_8662008652468753358_n.jpg?oh=adf26678d0205ec3c1a8ba7695761344&oe=58318C64",
+	"scores" : [5,5,3,2,4,5,2,2,2,5]
 
 }];
 
