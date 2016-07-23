@@ -17,10 +17,12 @@ module.exports = function(app){
 
 	var totalDifference = 100; 
 	var match; 
+	console.log("Here"); 
 
 	friends.forEach(function(friend){
 		var newDiff = 0; 
-		for(i = 0; friend.scores.length; i++){
+		console.log("looping");
+		for(i = 0; i < friend.scores.length; i++){
 			newDiff += Math.abs(friend.scores[i] - req.body.scores[i]); 
 		}
 		if (newDiff <= totalDifference){
@@ -28,6 +30,7 @@ module.exports = function(app){
 			match = friend; 
 		}
 	})
+		console.log("There");
 		res.json(match); 
 		friends.push(req.body);  
 	})

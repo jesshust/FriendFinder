@@ -10,7 +10,7 @@ var friends = [ {
 }, {
 	"name": "Justin", 
 	"photo" : "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/10922567_10102671228897967_319777945298527006_n.jpg?oh=265a91f9e1e42261057f8f0f62eb325a&oe=582CDC79", 
-	"score" : [5,5,2,3,1,1,2,1,3,5]
+	"scores" : [5,5,2,3,1,1,2,1,3,5]
 }];
 
 
