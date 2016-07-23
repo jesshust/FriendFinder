@@ -1,64 +1,60 @@
-// ===============================================================================
-// LOAD DATA
-// We are linking our routes to a series of "data" sources. 
-// ===============================================================================
+
 
 var friendData 		= require('../data/friend.js');
-var path 			= require('path');
 
 
-
-
-// ===============================================================================
 // ROUTING
-// ===============================================================================
 
 module.exports = function(app){
 
-	// API GET Requests
-	// Below code handles when users "visit" a page. 
-	// In each of the below cases when a user visits a link 
-	// (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table) 
-	// ---------------------------------------------------------------------------
 
 	app.get('/api/friends', function(req, res){
 		res.json(friendData);
 	});
 
 
-	// API POST Requests
-	// Below code handles when a user submits a form and thus submits data to the server.
-	// In each of the below cases, when a user submits form data (a JSON object)
-	// ...the JSON is pushed to the appropriate Javascript array
-	// (ex. User fills out the friend survey... this data is then sent to the server...
-	// Then the server saves the data to the friendData array)
-	// ---------------------------------------------------------------------------
-
 	app.post('/api/friends', function(req, res){
 
-		// Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-		// It will do this by sending out the value "true" have a table 
-		if(friendData.length < 5 ){
-			friendData.push(req.body);
-			res.json(true); // KEY LINE
+		var newFriend = req.body; 
+
+		for (var i = 0; i < newFriend.scores.length; i++) {
+			if(newFriend.scores[i] == '1 (Strongly Disagree)'){
+				newFriend.scores[i] = 1; 
+			} else if(newFriend.scores[i] == '5 (Strongly Agree)')
+				newFriend.scores[i] = 5; {
+
+			} else {
+				newFriend.scores[i] = parseInt(newFriend.scores[i]); 
+			}
+		}
+		
+		var diffArr = []; 
+
+		for(var i = 0; i < friendData.length; i++){
+
+			var friendCompare = friendData[i]; 
+			var diffTotal = 0; 
+
+			for(var j = 0; j < friendCompare.scores.length; j++){
+				var diffScore = Math.abs(friendCompare.scores[j] - newFriend.scores[j]); 
+				diffTotal += diffScore; 
+			}
+
+			diffArr[i] = diffTotal; 
 		}
 
-		// Or false if they don't have a table
-		else{
-			waitListData.push(req.body);
-			res.json(false); // KEY LINE
+		var bestiesNum = diffArr[0]; 
+		var bestiesIndex = 0; 
+
+		for (var i = 1; i < diffArr.length; i++){
+			if(diffArr[i] < bestiesNum) {
+				bestiesNum = diffArr[i]; 
+				bestiesIndex = i; 
+			}
 		}
 
-	});
+		friendData.push(newFriend); 
 
-	// ---------------------------------------------------------------------------
-	// I added this below code so you could clear out the table while working with the functionality.
-	// Don't worry about it!
-
-	app.post('/api/clear', function(req, res){
-		// Empty out the arrays of data
-		friendData = [];
-
-		console.log(friendData);
+		res.json(friendData[bestiesIndex]); 
 	})
 }
